@@ -1,0 +1,59 @@
+paths:
+  /api/products/{productId}:
+    put:
+      description: Update product by ID.
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          description: Product ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+            example:
+              title: Producto editado 1
+              description: Descripción del producto editado 1
+              price: 1012
+              thumbnail:
+                - https://cdn3.iconfinder.com/data/icons/education-209/64/bus-vehicle-transport-school-128.png
+                - https://cdn3.iconfinder.com/data/icons/education-209/64/bus-vehicle-transport-school-128.png
+              code: 1
+              stock: 19
+              category: Categoria 1
+              status: true
+      responses:
+        "200":
+          description: Returns the updated product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              example:
+                message: Se ha actualizado el producto exitosamente.
+                product:
+                  _id: 60b4b0a9e6c3c2b4c8a7b8b2
+                  title: Producto editado 1
+                  description: Descripción del producto editado 1
+                  price: 1012
+                  thumbnail:
+                    - https://cdn3.iconfinder.com/data/icons/education-209/64/bus-vehicle-transport-school-128.png
+                    - https://cdn3.iconfinder.com/data/icons/education-209/64/bus-vehicle-transport-school-128.png
+                  code: 1
+                  stock: 19
+                  category: Categoria 1
+                  status: true
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error

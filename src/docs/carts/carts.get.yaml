@@ -1,0 +1,38 @@
+paths:
+  /api/carts/{cartId}:
+    get:
+      description: Get cart by ID.
+      tags:
+        - Carts
+      parameters:
+        - name: cartId
+          in: path
+          description: Cart ID
+      responses:
+        "200":
+          description: Returns the content of the desired cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+              example:
+                message: Carrito encontrado.
+                cart:
+                  _id: 60b4b0a9e6c3c2b4c8a7b8b1
+                  products:
+                    - _id: 60b4b0a9e6c3c2b4c8a7b8b2
+                      quantity: 1
+                    - _id: 60b4b0a9e6c3c2b4c8a7b8b3
+                      quantity: 2
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error

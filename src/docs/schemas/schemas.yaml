@@ -1,0 +1,40 @@
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: string
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              quantity:
+                type: number
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        thumbnail:
+          type: array
+          items:
+            type: string
+        code:
+          type: string
+        stock:
+          type: number
+        category:
+          type: string
+        status:
+          type: boolean
+

@@ -1,0 +1,101 @@
+paths:
+  /api/carts/{cartId}/products/{productId}:
+    put:
+      description: Update product in cart.
+      tags:
+        - Carts
+      parameters:
+        - name: cartId
+          in: path
+          description: Cart ID
+        - name: productId
+          in: path
+          description: Product ID
+      requestBody:
+        description: Quantity to update in cart.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+            example:
+              quantity: 9
+      responses:
+        "200":
+          description: Replaces the products in the desired cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+              example:
+                message: Se ha actualizado la cantidad del producto en el carrito exitosamente.
+                cart:
+                  _id: 60b4b0a9e6c3c2b4c8a7b8b1
+                  products:
+                    - _id: 60b4b0a9e6c3c2b4c8a7b8b9
+                      quantity: 17
+                    - _id: 60b4b0a9e6c3c2b4c8a7b8b8
+                      quantity: 9
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error
+
+  /api/carts/{cartId}:
+    put:
+      description: Replace products in cart.
+      tags:
+        - Carts
+      parameters:
+        - name: cartId
+          in: path
+          description: Cart ID
+      requestBody:
+        description: Products to place in cart.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+            example:
+              products:
+                - _id: 60b4b0a9e6c3c2b4c8a7b8b9
+                  quantity: 17
+                - _id: 60b4b0a9e6c3c2b4c8a7b8b8
+                  quantity: 2
+      responses:
+        "200":
+          description: Replaces the products in the desired cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+              example:
+                message: Se han actualizado los productos del carrito exitosamente.
+                cart:
+                  _id: 60b4b0a9e6c3c2b4c8a7b8b1
+                  products:
+                    - _id: 60b4b0a9e6c3c2b4c8a7b8b9
+                      quantity: 17
+                    - _id: 60b4b0a9e6c3c2b4c8a7b8b8
+                      quantity: 2
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error

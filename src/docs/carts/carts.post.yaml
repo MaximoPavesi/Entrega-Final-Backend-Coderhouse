@@ -1,0 +1,99 @@
+paths:
+  /api/carts/:
+    post:
+      description: Add cart.
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: Creates a cart.
+          content:
+            application/json:
+              example:
+                message: El carrito ha sido creado exitosamente con el ID 60b4b0a9e6c3c2b4c8a7b8b1.
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error
+
+  /api/carts/{cartId}/products/{productId}:
+    post:
+      description: Add product to cart.
+      tags:
+        - Carts
+      parameters:
+        - name: cartId
+          in: path
+          description: Cart ID
+        - name: productId
+          in: path
+          description: Product ID
+      responses:
+        "200":
+          description: Adds the desired product to a desired cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              example:
+                message: El producto se ha agregado al carrito exitosamente.
+                product:
+                  _id: 60b4b0a9e6c3c2b4c8a7b8b2
+                  title: Producto 1
+                  description: Descripcion 1
+                  price: 100
+                  thumbnail:
+                    - https://cdn3.iconfinder.com/data/icons/education-209/64/bus-vehicle-transport-school-128.png
+                  code: 1
+                  stock: 10
+                  category: Categoria 1
+                  status: true
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error
+  
+  /api/carts/{cartId}/purchase:
+    post:
+      description: Complete purchase.
+      tags:
+        - Carts
+      parameters:
+        - name: cartId
+          in: path
+          description: Cart ID
+      responses:
+        "200":
+          description: Completes the purchase of the items in the desired cart.
+          content:
+            application/json:
+              example:
+                message: Compra realizada con éxito.
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error

@@ -1,0 +1,73 @@
+paths:
+  /api/carts/{cartId}/products/{productId}:
+    delete:
+      description: Delete product from cart.
+      tags:
+        - Carts
+      parameters:
+        - name: cartId
+          in: path
+          description: Cart ID
+        - name: productId
+          in: path
+          description: Product ID
+      responses:
+        "200":
+          description: Deletes the desired product from a desired cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+              example:
+                message: El producto se ha eliminado del carrito exitosamente.
+                cart:
+                  _id: 60b4b0a9e6c3c2b4c8a7b8b1
+                  products:
+                    - _id: 60b4b0a9e6c3c2b4c8a7b8b2
+                      quantity: 1
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error
+  
+  /api/carts/{cartId}:
+    delete:
+      description: Empty cart.
+      tags:
+        - Carts
+      parameters:
+        - name: cartId
+          in: path
+          description: Cart ID
+      responses:
+        "200":
+          description: Empties the desired cart.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+              example:
+                message: Se ha vaciado el carrito exitosamente.
+                cart:
+                  _id: 60b4b0a9e6c3c2b4c8a7b8b1
+                  products: []
+        "400":
+          description: Bad request.
+          content:
+            application/json:
+              example:
+                error: error
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              example:
+                error: error
